@@ -70,6 +70,12 @@ body {
   font-family: var(--default-font);
 }
 
+.login-form{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 a {
   color: var(--accent-color);
   text-decoration: none;

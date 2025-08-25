@@ -1,10 +1,12 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
 </head>
 <body>
+<div class="login-form">
 <form action="" method="POST">
     {% csrf_token %}
     <input type="text" name="username" placeholder="Username"><br><br>
@@ -14,5 +16,6 @@
     <p style="color: red"><b>{{ error }}</b></p>
     {% endif %}
 </form>
+    </div>
 </body>
 </html>
