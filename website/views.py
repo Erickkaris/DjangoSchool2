@@ -2,6 +2,8 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
+from website.forms import StudentForm
+
 
 # Create your views here.
 def index(request):
@@ -30,5 +32,17 @@ def login_view(request):
         else:
             return render(request, 'login.html', {'error':'Invalid credentials'})
     return render(request, 'login.html')
+
 def dashboard(request):
     return render(request, 'dashboard.html')
+
+
+def add_student(request):
+    if request.method == 'POST':
+        form = StudentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+    else:
+        form = StudentForm()
+    return render(request, 'add_student.html', {'form': form})
