@@ -60,57 +60,21 @@
                         <th>Actions</th>
                     </tr>
                     </thead>
+
                     <tbody>
-
+                    {% for student in students %}
                     <tr>
-                        <td>1</td>
-                        <td>John Doe</td>
-                        <td>Computer Science</td>
-                        <td>21</td>
-                        <td>Male</td>
-                        <td><a href="" class="btn btn-sm btn-warning">EDIT</a>
-                        <a href="" class="btn btn-sm btn-danger">DELETE</a></td>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.course }}</td>
+                        <td>{{ student.age }}</td>
+                        <td>{{ student.gender }}</td>
+                        <td>
+                            <a href="" class="btn btn-sm btn-warning">EDIT</a>
+                            <a href="{% url 'delete' student.id %}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete the student?')">DELETE</a>
+                        </td>
                     </tr>
-
-                    <tr>
-                        <td>2</td>
-                        <td>Janet Ndichu</td>
-                        <td>Computer Science</td>
-                        <td>21</td>
-                        <td>Female</td>
-                        <td><a href="" class="btn btn-sm btn-warning">EDIT</a>
-                        <a href="" class="btn btn-sm btn-danger">DELETE</a></td>
-                    </tr>
-
-                    <tr>
-                        <td>3</td>
-                        <td>Sarah Mary</td>
-                        <td>Information Technology</td>
-                        <td>23</td>
-                        <td>Female</td>
-                        <td><a href="" class="btn btn-sm btn-warning">EDIT</a>
-                        <a href="" class="btn btn-sm btn-danger">DELETE</a></td>
-                    </tr>
-
-                    <tr>
-                        <td>4</td>
-                        <td>George Bush</td>
-                        <td>Education</td>
-                        <td>22</td>
-                        <td>Male</td>
-                        <td><a href="" class="btn btn-sm btn-warning">EDIT</a>
-                        <a href="" class="btn btn-sm btn-danger">DELETE</a></td>
-                    </tr>
-
-                    <tr>
-                        <td>5</td>
-                        <td>Erick Karl</td>
-                        <td>Computer Technology</td>
-                        <td>21</td>
-                        <td>Male</td>
-                        <td><a href="" class="btn btn-sm btn-warning">EDIT</a>
-                        <a href="" class="btn btn-sm btn-danger">DELETE</a></td>
-                    </tr>
+                    {% endfor %}
                     </tbody>
                 </table>
             </div>

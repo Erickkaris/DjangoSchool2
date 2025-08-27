@@ -1,8 +1,9 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from website.forms import StudentForm
+from website.models import Student
 
 
 # Create your views here.
@@ -34,7 +35,8 @@ def login_view(request):
     return render(request, 'login.html')
 
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    students = Student.objects.all()
+    return render(request, 'dashboard.html',{'students':students})
 
 
 def add_student(request):
@@ -46,3 +48,8 @@ def add_student(request):
     else:
         form = StudentForm()
     return render(request, 'add_student.html', {'form': form})
+
+def delete_student(request, id):
+    student = get_object_or_404(Student, id=id)
+    student.delete()
+    return redirect('dashboard')

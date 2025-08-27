@@ -2,8 +2,8 @@ from django.db import models
 
 # Create your models here.
 class Student(models.Model):
-    name = models.CharField(max_length=20)
-    course = models.CharField(max_length=20)
+    name = models.CharField(max_length=30)
+    course = models.CharField(max_length=30)
     age = models.IntegerField()
     GENDER_CHOICES = [
         ('Male', 'Male'),
