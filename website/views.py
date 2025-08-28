@@ -1,4 +1,5 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 
@@ -34,6 +35,7 @@ def login_view(request):
             return render(request, 'login.html', {'error':'Invalid credentials'})
     return render(request, 'login.html')
 
+@login_required(login_url='login')
 def dashboard(request):
     students = Student.objects.all()
     return render(request, 'dashboard.html',{'students':students})
@@ -53,3 +55,18 @@ def delete_student(request, id):
     student = get_object_or_404(Student, id=id)
     student.delete()
     return redirect('dashboard')
+
+def edit_student(request, id):
+    student = get_object_or_404(Student, id=id)
+    if request.method == 'POST':
+        form = StudentForm(request.POST, instance=student)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+    else:
+        form = StudentForm(instance=student)
+        return render(request, 'edit_student.html', {'form': form, 'student': student})
+
+def user_logout(request):
+    logout(request)
+    return redirect('login')

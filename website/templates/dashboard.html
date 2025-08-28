@@ -20,6 +20,7 @@
             text-decoration: none;
             display: block;
             padding: 10px;
+            border-radius: 10px;
 
         }
         .sidebar a:hover{
@@ -39,6 +40,7 @@
             <a href="">View Students</a>
             <a href="">View Teachers</a>
             <a href="">Settings</a>
+            <a href="{% url 'logout' %}">Logout</a>
         </div>
         <div class="col-md-9 col-lg-10 content">
             <h2>Welcome to the School Dashboard</h2>
@@ -70,7 +72,7 @@
                         <td>{{ student.age }}</td>
                         <td>{{ student.gender }}</td>
                         <td>
-                            <a href="" class="btn btn-sm btn-warning">EDIT</a>
+                            <a href="{% url 'edit' student.id %}" class="btn btn-sm btn-warning">EDIT</a>
                             <a href="{% url 'delete' student.id %}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete the student?')">DELETE</a>
                         </td>
                     </tr>
