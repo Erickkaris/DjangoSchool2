@@ -5,20 +5,60 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <style>
-        body{
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
             align-items: center;
-            display: grid;
-            place-items: center;
             height: 100vh;
-            overflow: hidden;
+            margin: 0;
+        }
+
+        .login-form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 25%;
+            height: 50%;
+            text-align: center;
+
+        }
+        .login-form input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+        }
+        form button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
+    
+    
 <div class="login-form">
 <form action="" method="POST">
     {% csrf_token %}
     <div>
+       <h2>Login to your account</h2>
     <input type="text" name="username" placeholder="Username"><br><br>
     <input type="password" name="password" placeholder="Password"><br><br>
     <button type="submit">Login</button>

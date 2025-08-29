@@ -10,5 +10,5 @@ class StudentForm(forms.ModelForm):
             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Student Name'}),
             'course': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Course Name'}),
             'age': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Age'}),
-            'gender': forms.Select(attrs={'class': 'form-control'}),
+            'gender': forms.Select(attrs={'class': 'form-control', 'placeholder':'Select your gender'}),
         }
