@@ -27,9 +27,15 @@
             color: #0dcaf0;
             background-color: #51585e;
         }
+        .content p{
+            padding-top: 20px;
+        }
     </style>
 </head>
 <body>
+<nav class="navbar" style="background-color: #e3f2fd;" data-bs-theme="light">
+  <h2>Welcome to the School Dashboard</h2>
+</nav>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3 col-lg-2 sidebar">
@@ -43,8 +49,7 @@
             <a href="{% url 'logout' %}">Logout</a>
         </div>
         <div class="col-md-9 col-lg-10 content">
-            <h2>Welcome to the School Dashboard</h2>
-            <p>Use this dashboard to manage students and teachers</p>
+            <p>Use this dashboard to manage students and teachers.</p>
             <div class="card"></div>
             <div class="card-header">
                 Students
