@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'website'
+    'website',
+    'django_daraja'
 ]
 
 MIDDLEWARE = [
@@ -75,8 +76,12 @@ WSGI_APPLICATION = 'school.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'school',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
@@ -124,3 +129,12 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+MPESA_ENVIRONMENT = 'sandbox'
+MPESA_CONSUMER_KEY = 'wdtBL569ZYmeqBU7sfiP7Q0zlC37ahQ3wpoxfaqyOMMSqvPi'
+MPESA_CONSUMER_SECRET = 'ZWosHJoaAyXj1RhqH0F8YXEPuPwwPdFdiu3aANXIgrFchXpxZxoAi13SjyYRIuh5'
+MPESA_SHORTCODE = '174379'
+MPESA_EXPRESS_SHORTCODE = '174379'
+MPESA_SHORTCODE_TYPE = 'paybill'
+MPESA_PASSKEY = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919'
+MPESA_INITIATOR_USERNAME = 'testapi'
+MPESA_INITIATOR_CREDENTIALS = 'Safaricom999!*!'

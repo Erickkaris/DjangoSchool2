@@ -2,9 +2,10 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
+from django_daraja.mpesa.core import MpesaClient
 
 from website.forms import StudentForm
-from website.models import Student
+from website.models import Student, Payment
 
 
 # Create your views here.
@@ -70,3 +71,27 @@ def edit_student(request, id):
 def user_logout(request):
     logout(request)
     return redirect('login')
+
+def mpesaapi(request):
+    if request.method == 'POST':
+        phone_number = request.POST.get('phone')
+        amount = int(request.POST.get('amount'))
+        client = MpesaClient()
+        account_reference = 'EMOBILIS'
+        transaction_desc = 'Payment for school fees'
+        callback_url = 'https://example.com/callback'
+
+        response = client.stk_push(phone_number, amount, account_reference, transaction_desc, callback_url)
+        res_dict = response.json()
+        Payment.objects.create(
+            phone = phone_number,
+            amount = amount,
+            description = res_dict.get("ResponseDescription",""),
+            response_code = res_dict.get("ResponseCode",""),
+            customer_message_id = res_dict.get("CustomerMessage",""),
+            merchant_request_id = res_dict.get("MerchantRequestID",""),
+            checkout_request_id = res_dict.get("CheckoutRequestID",""),
+            status = "Pending"
+        )
+        return render(request, "payment_form.html")
+    return render(request, 'payment_form.html')

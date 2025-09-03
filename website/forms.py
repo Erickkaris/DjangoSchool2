@@ -1,6 +1,7 @@
 from django import forms
 
-from website.models import Student
+from website.models import Student, Payment
+
 
 class StudentForm(forms.ModelForm):
     class Meta:
@@ -11,4 +12,12 @@ class StudentForm(forms.ModelForm):
             'course': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Course Name'}),
             'age': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Age'}),
             'gender': forms.Select(attrs={'class': 'form-control', 'placeholder':'Select your gender'}),
+        }
+
+class PaymentForm(forms.ModelForm):
+    class Meta:
+        model = Payment
+        fields = '__all__'
+        widgets = {
+            'amount': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Amount'}),
         }
